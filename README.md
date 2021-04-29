@@ -8,7 +8,7 @@ Your task is to make a robust record and replay feature (think Selenium Recorder
 - **Your ability to think about the problem and it's constraints**
 - **Your ability to debug this system:** This demo stack is by design, poorly architected and has room for growth in many dimensions. Here are a few ideas, but by no means is this list exhaustive: we're excited to see how you solve these problems or any others you come up with as you're making this record replay feature more robust. Making this perfect will not be possible in the time you have, so we recommend choosing one direction to explore and doing it well!
     - **Selectors are timing out:** One may choose to wait for dom stability triggers before continuing to the next event to make sure the page is at the right state when executing. There are be better ways to do this! Nobody wants to put time based waits in their testing code!
-    - **More robust data collection:** The current code just captures click and change events. How would we handle keyboard shortcuts? Hovers (efficiently)?
+    - **More robust data collection:** The current code just captures click and change events. How would we handle keyboard shortcuts? Hovers (efficiently)? Drag and drop?
     - **Better selectors:** Today we just capture a dumb, structural css selector for the events. Is there a way to better identify an element on the page using multiple selectors? More specificity?
     - **Stability Measures:** Understanding wether the event loop is ready for the next event. Is there a way to measure network or dom stability? Is there a better way to know the page is ready to be interacted with after the last action we did? We've had some interesting problems around this where sometimes we outperform the javascript rendering, but other times we wait too long.
 
@@ -26,3 +26,9 @@ You can get set up by doing the following
 - Set up the recorder: go to `chrome://extensions` in Chrome, select load unpacked, and load the recorder folder. Make sure as you are refreshing the extension as you update the recorder.js code to make sure the latest code is being injected to collect data
 - To receive and capture events, start the web server by running `flask run` in the replayer directory. Every time you exit this process, it will overwrite the existing sequence.
 - To replay the sequences collected, run `python replay.py`
+
+
+Evaluation Criteria
+- Be able to run this on a few different websites and smoothly replay sequences run on any of them (nytimes.com, cnn.com, facebook.com, google.com). If you're feeling super adventerous, maybe run a session editing a notion board or google doc. 
+- Stability: being able to consistently run these sessions without hard coded timeouts
+- Code quality for net new code (we will not penalize you for the initial infrastructure if you choose to use ours)
